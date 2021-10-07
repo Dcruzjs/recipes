@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{url_for('static', filename='./css/styles.css')}}">
+  <title>Flask App</title>
+</head>
+<body>
+  <div class="container d-flex justify-content-space-between">
+    <section class="mx-3 register w-50">
+      <form class=" w-100 my-2 d-grid gap-3  p-5 border " action="/register" method="POST">
+        <h2>Create Account</h2>
+        
+        <div class="inputText d-grid gap-3">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="first_name" name="first_name" value="Daniel" placeholder="Your first name here..." required>
+            <label class="text" for="first_name">First Name</label>
+          </div>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="last_name" name="last_name" value="Cruz" placeholder="Your last name here..." required>
+            <label class="text" for="last_name">Last Name</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="password" name="password" value="Geek@2021" required>
+            <label class="text" for="password">Password</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="confirm_password" name="confirm_password" value="Geek@2021" required>
+            <label class="text" for="confirm_password">Password Confirmation</label>
+          </div>
+          <div class="form-floating ">
+            <input type="email" class="form-control" id="email" name="email" value="daniel@dcruz.dev" placeholder="name@example.com" required>
+            <label class="text" for="email">Email address</label>
+          </div>
+        </div>
+        <div class="form-floating ">
+          <select class="form-select" id="user_location" aria-label="Floating label select example" name="user_location">
+            <option value="Chicago">Chicago</option>
+            <option value="Seattle">Seattle</option>
+            <option value="San Jose">San Jose</option>
+          </select>
+          <label class="text" for="user_location">Location</label>
+        </div>
+        <div class="form-floating dataList">
+          <input type="text" class="form-control" list="datalistOptions" id="fav_food" name="fav_food" value="" placeholder="Type to search..." required>
+          <label class="text" for="fav_food">Favorite Food</label>
+          <datalist id="datalistOptions">
+            <option value="Pizza">
+            <option value="Lasagna">
+            <option value="Hot Dogs">
+            <option value="Tacos">
+            <option value="French Fries">
+          </datalist>
+    
+        </div>
+        <div class="checkboxes d-flex">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="Student" value="Student" name="position" >
+            <label class="form-check-label" for="Student">Student</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="junior" value="Junior Developer"  name="position">
+            <label class="form-check-label" for="junior">Junior Developer</label> </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="middle" value="Middle Developer" name="position">
+            <label class="form-check-label" for="middle">Middle Developer</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="senior" value="Senior Developer" name="position">
+            <label class="form-check-label" for="senior">Senior Developer</label>
+          </div>
+          
+    
+        </div>
+        <div class="radioButtons">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" id="male" type="radio" name="genre"  value="Male" checked>
+            <label class="form-check-label" for="male">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="genre" id="female" value="Female">
+            <label class="form-check-label" for="female">Female</label>
+          </div>
+          
+        </div>
+        
+        <div>
+          <button type="submit" class="btn btn-warning mt-1">Submit</button>
+
+        </div>
+        <div class="card-body">
+          {% with messages = get_flashed_messages(category_filter=["register"]) %}
+            {# declare a variable called messages #}
+            {% if messages %}
+              {# check if there are any messages #}
+              {% for message in messages %}
+                {# loop through the messages #}
+                <p>{{message}}</p> {# display each message in a paragraph tag #}
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
+      </form>
+    </section>
+    <section class="login">
+      <form class=" w-100 my-2 d-grid gap-3  p-5 border " action="/login" method="POST">
+        <h2>LogIn</h2>
+      
+        <div class="inputText d-grid gap-3">
+          <div class="form-floating ">
+            <input type="email" class="form-control" id="email" name="email" value="steve@dcruz.dev"
+              placeholder="name@example.com" required>
+            <label class="text" for="email">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="password" name="password" value="Geek@2021" required>
+            <label class="text" for="password">Password</label>
+          </div>
+        
+        <div>
+          <button type="submit" class="btn btn-warning mt-1">LogIn</button>
+        </div>
+        <div class="card-body">
+          {% with messages = get_flashed_messages(category_filter=["login"]) %}
+            {# declare a variable called messages #}
+            {% if messages %}
+              {# check if there are any messages #}
+              {% for message in messages %}
+                {# loop through the messages #}
+                <p>{{message}}</p> {# display each message in a paragraph tag #}
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
+      </form>
+    </section>
+
+  </div>
+</body>
+</html>

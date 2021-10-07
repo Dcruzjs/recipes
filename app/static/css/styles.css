@@ -1,0 +1,24 @@
+/* html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 2.6rem;
+} */
+
+h2 {
+  color: #fec008;
+  font-size: 3.2rem;
+}
+
+form,
+.card-body {
+  background-color: #33393e;
+  color: white;
+}
+span {
+  font-weight: 600;
+}
+.text {
+  color: black;
+}

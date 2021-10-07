@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{url_for('static', filename='./css/styles.css')}}">
+  <title>Create Recipe</title>
+</head>
+
+<body>
+  <div class="container d-flex flex-column border justify-content-space-between">
+    <header class="d-flex mt-3 justify-content-between ">
+      <h3>Add a New Recipe!</h3>
+      <nav class="w-50  justify-content-evenly d-flex  justify-content-center align-items-center">
+        <a href="/dashboard" class="btn btn-outline-primary">Dashboard</a>
+        <a href="/" class="btn btn-outline-secondary"> Log Out</a>
+      </nav>
+    </header>
+    <section>
+      <form class="mx-auto my-5 p-5 w-75 justify-content-between" action="/create/new" method="POST">
+        <div class="d-flex">
+          <div class="w-50">
+            {% with messages = get_flashed_messages(category_filter=["create_recipe"]) %}
+              {# declare a variable called messages #}
+                {% if messages %}
+                  {# check if there are any messages #}
+                  {% for message in messages %}
+                    {# loop through the messages #}
+                    <p>{{message}}</p> {# display each message in a paragraph tag #}
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="recipe_name" name="recipe_name" placeholder="Your recipe_name here..." required>
+              <label class="text" for="recipe_name">Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <textarea class="form-control" placeholder="Leave a comment here" id="description"
+                style="height: 100px" name="description"></textarea>
+              <label class="text" for="description">Description</label>
+            </div>
+            <div class="form-floating mb-3">
+              <textarea class="form-control" placeholder="Leave a comment here" id="instructions"
+                style="height: 100px" name="instructions"></textarea>
+              <label class="text" for="instructions">Instructions</label>
+            </div>
+            
+          </div>
+          <div class="w-50 d-flex flex-column align-items-center justify-content-center mx-3">
+            <div class="d-flex flex-column mb-5">
+              <label for="date">Date Made On:</label>
+              <input type="date" id="date" name="date">
+            </div>
+            <div>
+              <h4>Under 30 minutes?</h4>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="under_time" id="inlineRadio1" value="yes">
+                <label class="form-check-label" for="inlineRadio1">Yes</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="under_time" id="inlineRadio2" value="no">
+                <label class="form-check-label" for="inlineRadio2">No</label>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div>
+          <button type="submit" class="btn btn-outline-primary">Create</button>
+        </div>
+      </form>
+    </section>
+
+
+  </div>
+
+</body>
+
+</html>
